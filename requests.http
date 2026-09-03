@@ -1,0 +1,79 @@
+### ===========================================================
+### REST API Fundamentals — Example Requests
+### Use with the VS Code "REST Client" extension.
+### Click "Send Request" above any block below to try it out.
+### ===========================================================
+
+@baseUrl = http://localhost:5000
+
+### Root route — API info
+GET {{baseUrl}}/
+
+
+### Get all products
+GET {{baseUrl}}/api/products
+
+
+### Get a single product by ID
+GET {{baseUrl}}/api/products/1
+
+
+### Get a product that does not exist (expect 404)
+GET {{baseUrl}}/api/products/9999
+
+
+### Create a new product
+POST {{baseUrl}}/api/products
+Content-Type: application/json
+
+{
+  "name": "Mechanical Keyboard",
+  "price": 79.99,
+  "category": "Electronics"
+}
+
+
+### Create a product with missing fields (expect 400)
+POST {{baseUrl}}/api/products
+Content-Type: application/json
+
+{
+  "name": "Incomplete Product"
+}
+
+
+### Update a product (full update)
+PUT {{baseUrl}}/api/products/1
+Content-Type: application/json
+
+{
+  "name": "Gaming Laptop",
+  "price": 1299,
+  "category": "Electronics"
+}
+
+
+### Update a product (partial update)
+PUT {{baseUrl}}/api/products/2
+Content-Type: application/json
+
+{
+  "price": 19.99
+}
+
+
+### Update a product that does not exist (expect 404)
+PUT {{baseUrl}}/api/products/9999
+Content-Type: application/json
+
+{
+  "price": 10
+}
+
+
+### Delete a product
+DELETE {{baseUrl}}/api/products/3
+
+
+### Delete a product that does not exist (expect 404)
+DELETE {{baseUrl}}/api/products/9999
